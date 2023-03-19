@@ -24,8 +24,15 @@ int main()
     const int NORMAL_PAY = 20;
     const double TIME_AND_HALF_RATIO = 1.5;
     const int DOUBLE_TIME_RATIO = 2;
-    const int MAX_HOURS = 40;
-    const string SPACER = "_______________________________________________\n\n";
+    const int HOURS_45 = 45;
+    const int HOURS_40 = 40;
+    const int CURRENT_YEAR = 2023;
+    const int WEEKS_IN_YEAR = 52;
+
+    // tax percent constants
+    const double TEN_PERCENT = 0.1;
+    const double TWENTY_PERCENT = 0.2;
+    const double THIRTY_PERCENT = 0.3;
 
     // main loop
     while (true)
@@ -34,7 +41,7 @@ int main()
             << "Press 'C' to CONTINUE or 'Q' to QUIT" << endl;
         cin >> entry_character;
 
-        if (toupper(entry_character) == 'Q')
+        if (toupper(entry_character) == 'Q') // quits proggrame if input is "Q"
         {
             cout << "Have a nice day...Quiting Programme" << endl;
             break;
@@ -62,7 +69,7 @@ int main()
 
             cout << "enter year of birth: ";
             cin >> year_of_birth;
-            age = 2023 - year_of_birth;
+            age = CURRENT_YEAR - year_of_birth; // calculates age using current year as 2023
             cout << "\n";
 
             cout << "Enter number of hours worked in this week: ";
@@ -70,25 +77,25 @@ int main()
             cout << "\n";
 
             //calculations
-            if (hours_worked > (MAX_HOURS + 5))
+            if (hours_worked > HOURS_45) // checks to see if hours worked is more than 45. Gives double time to hours above 45. 
             {
-                overtime_hours = hours_worked - 45;
-                income = (MAX_HOURS * NORMAL_PAY) + (5 * NORMAL_PAY * TIME_AND_HALF_RATIO) + (overtime_hours * NORMAL_PAY * DOUBLE_TIME_RATIO);
+                overtime_hours = hours_worked - HOURS_45;
+                income = (HOURS_40 * NORMAL_PAY) + (5 * NORMAL_PAY * TIME_AND_HALF_RATIO) + (overtime_hours * NORMAL_PAY * DOUBLE_TIME_RATIO);
             }
-            else if (hours_worked > MAX_HOURS)
+            else if (hours_worked > HOURS_40) // checks to see if hours worked is more than 40 and less than 45. gives time and half
             {
-            overtime_hours = hours_worked - MAX_HOURS;
-            income = (MAX_HOURS * NORMAL_PAY) + (overtime_hours * NORMAL_PAY * TIME_AND_HALF_RATIO);
+                overtime_hours = hours_worked - HOURS_40;
+                income = (HOURS_40 * NORMAL_PAY) + (overtime_hours * NORMAL_PAY * TIME_AND_HALF_RATIO);
             }
-            else
+            else // hours is less than 40 so only normal pay is given
             {
                 income = hours_worked * NORMAL_PAY;
             }
 
-            annual_income = income * 52;
+            annual_income = income * WEEKS_IN_YEAR;
 
-            //checking to see age and applicable income tax
-            if (age < 55 && toupper(gender) == 'M')
+             
+            if (age < 55 && toupper(gender) == 'M') // sees the persons age and their corresponding income tax.
             {
                 if (annual_income < 10000)
                 {
@@ -96,15 +103,15 @@ int main()
                 }
                 else if (annual_income <= 30000)
                 {
-                    tax = 0.1;
+                    tax = TEN_PERCENT;
                 }
                 else if (annual_income <= 100000)
                 {
-                    tax = 0.2;
+                    tax = TWENTY_PERCENT;
                 }
                 else
                 {
-                    tax = 0.3;
+                    tax = THIRTY_PERCENT;
                 }
             }
             else if (age < 55 && toupper(gender) == 'F')
@@ -115,15 +122,15 @@ int main()
                 }
                 else if (annual_income <= 35000)
                 {
-                    tax = 0.1;
+                    tax = TEN_PERCENT;
                 }
                 else if (annual_income <= 100000)
                 {
-                    tax = 0.2;
+                    tax = TWENTY_PERCENT;
                 }
                 else
                 {
-                    tax = 0.3;
+                    tax = THIRTY_PERCENT;
                 }
             }
             else if (age <= 80)
@@ -134,15 +141,15 @@ int main()
                 }
                 else if (annual_income <= 70000)
                 {
-                    tax = 0.1;
+                    tax = TEN_PERCENT;
                 }
                 else if (annual_income <= 150000)
                 {
-                    tax = 0.2;
+                    tax = TWENTY_PERCENT;
                 }
                 else
                 {
-                    tax = 0.3;
+                    tax = THIRTY_PERCENT;
                 }
             }
             else
@@ -153,9 +160,9 @@ int main()
             //outputs
 
             cout << "<------- INCOME TAXT CALCULATOR ------->     " << endl;
-            cout << "Name:                 " << first_name << " " << surname << endl;
+            cout << "Name:                " << first_name << " " << surname << endl;
             cout << "Employee ID:         #"<< employee_id << endl; 
-            cout << "Age:                  "<< age << endl; 
+            cout << "Age:                 "<< age << endl; 
             cout << "Gross Pay per week:  $"<< income << endl; 
             cout << "Gross Annual Salary: $"<< annual_income<< endl; 
             cout << "Net Annual Salary:   $"<< annual_income - (annual_income * tax) << endl; 
@@ -164,8 +171,8 @@ int main()
 
         else // checking for an input other than 'C' and 'Q'
         {
-            cout << "Invalid Input...Quiting Programme" << endl;
-            break;
+            cout << "Invalid Input...Retry" << endl;
+            continue;
         }
     
     }
