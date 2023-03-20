@@ -5,8 +5,6 @@ Rudr Ravi Prasad - S11219309
 
 */
 
-// calculate age, income, tax
-
 #include <iostream>
 #include <cctype>
 
@@ -34,8 +32,11 @@ int main()
     const double TWENTY_PERCENT = 0.2;
     const double THIRTY_PERCENT = 0.3;
 
+    //main loop condition
+    bool running = true;
+
     // main loop
-    while (true)
+    while (running)
     {
         cout << "\nWelcome to The Income Tax Calculator 5000" << endl
             << "Press 'C' to CONTINUE or 'Q' to QUIT" << endl;
@@ -44,7 +45,7 @@ int main()
         if (toupper(entry_character) == 'Q') // quits proggrame if input is "Q"
         {
             cout << "Have a nice day...Quiting Programme" << endl;
-            break;
+            running = false;
         }
 
         else if (toupper(entry_character) == 'C')
@@ -65,7 +66,6 @@ int main()
             cout << "enter your gender (M -> male, F -> female): ";
             cin >> gender;
             cout << "\n";
-
 
             cout << "enter year of birth: ";
             cin >> year_of_birth;
@@ -152,11 +152,11 @@ int main()
                     tax = THIRTY_PERCENT;
                 }
             }
-            else
+            else if (age > 80)
             {
                 tax = 0;
             }
-
+        
             //outputs
 
             cout << "<------- INCOME TAXT CALCULATOR ------->     " << endl;
@@ -176,4 +176,5 @@ int main()
         }
     
     }
+    return 0;
 }
