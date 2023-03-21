@@ -7,6 +7,7 @@ Rudr Ravi Prasad - S11219309
 
 #include <iostream>
 #include <cctype>
+#include <iomanip>
 
 using namespace std;
 
@@ -79,11 +80,30 @@ int main()
             
             cout << "enter year of birth: ";
             cin >> year_of_birth;
+
+            while (cin.fail()) // check to see if age is a valid interger input
+            {
+                cin.clear();
+                cin.ignore(100, '\n');
+                cout << "Error. Expected interger, entered string ";
+                cout << "Enter birth year again: ";
+                cin >> year_of_birth;
+            }
+
             age = CURRENT_YEAR - year_of_birth; // calculates age using current year as 2023
             cout << "\n";
 
             cout << "Enter number of hours worked in this week: ";
             cin >> hours_worked;
+
+            while (cin.fail()) // check to see if hours_worked is a valid interger input
+            {
+                cin.clear();
+                cin.ignore(100, '\n');
+                cout << "Error. Expected interger, entered string";
+                cout << "Enter hours worked again: ";
+                cin >> hours_worked;
+            }
             cout << "\n";
 
             //calculations
@@ -188,10 +208,6 @@ int main()
         }
     
     }
-
-
-
-
 
     return 0;
 }
