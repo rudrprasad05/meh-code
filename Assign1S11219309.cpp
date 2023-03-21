@@ -1,6 +1,6 @@
 /*
 
-Assignment 1
+Assignment 1 - Income Tax Calculator
 Rudr Ravi Prasad - S11219309
 
 */
@@ -15,7 +15,10 @@ int main()
     //input variables
     char entry_character, gender;
     string first_name, surname, employee_id;
-    int year_of_birth, hours_worked, age, overtime_hours;
+    int year_of_birth, hours_worked;
+
+    // temp var
+    int overtime_hours, age;
     double income, tax, annual_income;
 
     // programme constants
@@ -26,6 +29,8 @@ int main()
     const int HOURS_40 = 40;
     const int CURRENT_YEAR = 2023;
     const int WEEKS_IN_YEAR = 52;
+    const int age_80 = 80;
+    const int age_55 = 55;
 
     // tax percent constants
     const double TEN_PERCENT = 0.1;
@@ -35,11 +40,13 @@ int main()
     //main loop condition
     bool running = true;
 
+    cout << "\nWelcome to The Income Tax Calculator 5000" << endl;
+
     // main loop
     while (running)
     {
-        cout << "\nWelcome to The Income Tax Calculator 5000" << endl
-            << "Press 'C' to CONTINUE or 'Q' to QUIT" << endl;
+        
+        cout << "Press 'C' to CONTINUE or 'Q' to QUIT" << endl;
         cin >> entry_character;
 
         if (toupper(entry_character) == 'Q') // quits proggrame if input is "Q"
@@ -63,10 +70,13 @@ int main()
             cin >> employee_id;
             cout << "\n";
 
-            cout << "enter your gender (M -> male, F -> female): ";
-            cin >> gender;
-            cout << "\n";
-
+            while (toupper(gender) != 'M' && toupper(gender) != 'F') // make sure that the input in only either 'M' or 'F'
+            {
+                cout << "enter your gender (M -> male, F -> female): ";
+                cin >> gender;
+                cout << "\n";
+            }
+            
             cout << "enter year of birth: ";
             cin >> year_of_birth;
             age = CURRENT_YEAR - year_of_birth; // calculates age using current year as 2023
@@ -95,7 +105,7 @@ int main()
             annual_income = income * WEEKS_IN_YEAR;
 
              
-            if (age < 55 && toupper(gender) == 'M') // sees the persons age and their corresponding income tax.
+            if (age < age_55 && toupper(gender) == 'M') // sees the persons age and and calculates their corresponding income tax.
             {
                 if (annual_income < 10000)
                 {
@@ -114,7 +124,7 @@ int main()
                     tax = THIRTY_PERCENT;
                 }
             }
-            else if (age < 55 && toupper(gender) == 'F')
+            else if (age < age_55 && toupper(gender) == 'F')
             {
                 if (annual_income < 12000)
                 {
@@ -133,7 +143,7 @@ int main()
                     tax = THIRTY_PERCENT;
                 }
             }
-            else if (age <= 80)
+            else if (age <= age_80)
             {
                 if (annual_income < 50000)
                 {
@@ -152,13 +162,15 @@ int main()
                     tax = THIRTY_PERCENT;
                 }
             }
-            else if (age > 80)
+            else if (age > age_80)
             {
                 tax = 0;
             }
+            else
+                cout << "error, try again" << endl;
         
-            //outputs
 
+            //outputs
             cout << "<------- INCOME TAXT CALCULATOR ------->     " << endl;
             cout << "Name:                " << first_name << " " << surname << endl;
             cout << "Employee ID:         #"<< employee_id << endl; 
@@ -176,5 +188,10 @@ int main()
         }
     
     }
+
+
+
+
+
     return 0;
 }
