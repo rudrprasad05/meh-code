@@ -3,23 +3,22 @@
 using namespace std;
 
 int main(){
-    int x = 0;
-    cout << "Please provide a value for x:";
-    cin >> x;
-
-    if ( x <= 1){
-    if (x > 0) {
-        cout << "Answer A\n";
-    }
-    else{
-        cout << "Answer B\n";
-    }
-    }
-    else{
-    cout << "Answer C\n";
+    int sum = 0;
+    int num1;
+    double count;
+    double mean;
+    while (num1 >= 0)
+    {
+        sum += num1;
+        count++;
+        cout << "enter number: ";
+        cin >> num1;
     }
 
+    cout << "sum = "<< sum << endl;
 
-
+    mean = sum / count;
+    
+    cout << "mean = " << mean << endl;
     return 0;
 }
