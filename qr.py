@@ -1,7 +1,7 @@
 import qrcode
 
 # Define the data to be encoded as a QR code
-data = '''Join ⁨USP Chess Club⁩ https://invite.viber.com/?g2=AQA7u0eXm8JqIFDEeUCGujpxr%2B9QFTWWrpu%2FZMVOLN54beWf%2BjSMeSWNXE7Jcash on Viber'''
+data = '''https://www.facebook.com/fijichess/'''
 
 # Create a QR code instance
 qr = qrcode.QRCode(version=1, box_size=10, border=2)

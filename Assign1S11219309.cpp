@@ -20,6 +20,7 @@ int main()
     // temp var
     int overtime_hours, age;
     double income, tax, annual_income;
+    string sex;
 
     // programme constants
     const int NORMAL_PAY = 20;
@@ -83,7 +84,7 @@ int main()
             while (cin.fail()) // check to see if age is a valid interger input
             {
                 cin.clear();
-                cin.ignore(100, '\n');
+                cin.ignore(1000, '\n');
                 cout << "Error. Expected interger, entered string ";
                 cout << "Enter birth year again: ";
                 cin >> year_of_birth;
@@ -192,8 +193,9 @@ int main()
             //outputs
             cout << "<------- INCOME TAXT CALCULATOR ------->     " << endl;
             cout << "Name:                " << first_name << " " << surname << endl;
-            cout << "Employee ID:         #"<< employee_id << endl; 
-            cout << "Age:                 "<< age << endl; 
+            cout << "Employee ID:         "<< employee_id << endl; 
+            cout << "Age:                 "<< age << endl;
+            cout << "Gender               " << ((toupper(gender) == 'M') ? "Male" : "Female") << endl; // ternary operator that validates sex as Male if 'M' and Female if 'F'
             cout << "Gross Pay per week:  $"<< income << endl; 
             cout << "Gross Annual Salary: $"<< annual_income<< endl; 
             cout << "Net Annual Salary:   $"<< annual_income - (annual_income * tax) << endl; 
