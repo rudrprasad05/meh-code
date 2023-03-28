@@ -49,14 +49,15 @@ int main()
         
         cout << "Press 'C' to CONTINUE or 'Q' to QUIT" << endl;
         cin >> entry_character;
+        entry_character = toupper(entry_character);
 
-        if (toupper(entry_character) == 'Q') // quits proggrame if input is "Q"
+        if (entry_character == 'Q') // quits proggrame if input is "Q"
         {
             cout << "Have a nice day...Quiting Programme" << endl;
             running = false;
         }
 
-        else if (toupper(entry_character) == 'C')
+        else if (entry_character == 'C')
         {
             //asking for inputs
             cout << "Enter your first name: ";
@@ -71,13 +72,14 @@ int main()
             cin >> employee_id;
             cout << "\n";
 
-            while (toupper(gender) != 'M' && toupper(gender) != 'F') // make sure that the input in only either 'M' or 'F'
+            while (gender != 'M' && gender != 'F') // make sure that the input in only either 'M' or 'F'
             {
                 cout << "enter your gender (M -> male, F -> female): ";
                 cin >> gender;
-                cout << "\n";
+                gender = toupper(gender);   
             }
-            
+            cout << "\n";
+
             cout << "enter year of birth: ";
             cin >> year_of_birth;
 
@@ -125,7 +127,7 @@ int main()
             annual_income = income * WEEKS_IN_YEAR;
 
              
-            if (age < age_55 && toupper(gender) == 'M') // sees the persons age and and calculates their corresponding income tax.
+            if (age < age_55 && gender == 'M') // sees the persons age and and calculates their corresponding income tax.
             {
                 if (annual_income < 10000)
                 {
@@ -144,7 +146,7 @@ int main()
                     tax = THIRTY_PERCENT;
                 }
             }
-            else if (age < age_55 && toupper(gender) == 'F')
+            else if (age < age_55 && gender == 'F')
             {
                 if (annual_income < 12000)
                 {
@@ -195,7 +197,7 @@ int main()
             cout << "Name:                " << first_name << " " << surname << endl;
             cout << "Employee ID:         "<< employee_id << endl; 
             cout << "Age:                 "<< age << endl;
-            cout << "Gender               " << ((toupper(gender) == 'M') ? "Male" : "Female") << endl; // ternary operator that validates sex as Male if 'M' and Female if 'F'
+            cout << "Gender               " << (gender == 'M' ? "Male" : "Female") << endl; // ternary operator that validates sex as Male if 'M' and Female if 'F'
             cout << "Gross Pay per week:  $"<< income << endl; 
             cout << "Gross Annual Salary: $"<< annual_income<< endl; 
             cout << "Net Annual Salary:   $"<< annual_income - (annual_income * tax) << endl; 
