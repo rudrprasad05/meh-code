@@ -38,8 +38,8 @@ int main()
     // validate user input for number_of_players, ensuring it is an interger
     while (cin.fail() || number_of_players > 3 || number_of_players < 0) 
     {
-        cin.clear(); // clear  error flags
-        cin.ignore(1000, '\n'); // ignore remaining input characters
+        cin.clear(); 
+        cin.ignore(1000, '\n'); 
         cout << "Error! Invalid input. Enter number of players again: ";
         cin >> number_of_players;
     }
@@ -62,7 +62,7 @@ int main()
     }
     else
     {
-        cout << "Invalid game choice" << endl; // error statement for invalid game choice
+        cout << "Invalid game choice" << endl; // error statement
     }    
 
 return 0;
