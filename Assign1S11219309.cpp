@@ -49,7 +49,8 @@ int main()
         
         cout << "Press 'C' to CONTINUE or 'Q' to QUIT" << endl;
         cin >> entry_character;
-        entry_character = toupper(entry_character);
+        // change the character to uppercase inorder to prevent error and allow for users to enter uppercase or lowercase input
+        entry_character = toupper(entry_character); 
 
         if (entry_character == 'Q') // quits proggrame if input is "Q"
         {
@@ -60,6 +61,8 @@ int main()
         else if (entry_character == 'C')
         {
             //asking for inputs
+
+    
             cout << "Enter your first name: ";
             cin >> first_name;
             cout << "\n";
@@ -72,9 +75,14 @@ int main()
             cin >> employee_id;
             cout << "\n";
 
+            cout << "Enter your gender (M -> male, F -> female): ";
+            cin >> gender;
+            // change the character to uppercase inorder to prevent error and allow for users to enter uppercase or lowercase input
+            gender = toupper(gender); 
+
             while (gender != 'M' && gender != 'F') // make sure that the input in only either 'M' or 'F'
             {
-                cout << "enter your gender (M -> male, F -> female): ";
+                cout << "Error! Invalid input, please enter your gender again (M -> male, F -> female): ";
                 cin >> gender;
                 gender = toupper(gender);   
             }
@@ -83,30 +91,30 @@ int main()
             cout << "enter year of birth: ";
             cin >> year_of_birth;
 
-            while (cin.fail()) // check to see if age is a valid interger input
+            while (cin.fail() || year_of_birth < 0) // check to see if age is a valid positive interger input
             {
                 cin.clear();
                 cin.ignore(1000, '\n');
-                cout << "Error. Expected interger, entered string ";
-                cout << "Enter birth year again: ";
+                cout << "Error! Invalid input, please enter birth year again: ";
                 cin >> year_of_birth;
             }
 
             age = CURRENT_YEAR - year_of_birth; // calculates age using current year as 2023
             cout << "\n";
 
-            cout << "Enter number of hours worked in this week: ";
+            cout << "Enter number of hours worked in a week: ";
             cin >> hours_worked;
 
-            while (cin.fail()) // check to see if hours_worked is a valid interger input
+            while (cin.fail() || hours_worked < 0) // check to see if hours_worked is a valid positive interger input
             {
                 cin.clear();
                 cin.ignore(100, '\n');
-                cout << "Error. Expected interger, entered string";
-                cout << "Enter hours worked again: ";
+                cout << "Error! Invalid input, please enter hours worked again: ";
                 cin >> hours_worked;
             }
             cout << "\n";
+
+
 
             //calculations
             if (hours_worked > HOURS_45) // checks to see if hours worked is more than 45. Gives double time to hours above 45. 
@@ -194,7 +202,7 @@ int main()
 
             //outputs
             cout << "<------- INCOME TAXT CALCULATOR ------->     " << endl;
-            cout << "Name:                " << first_name << " " << surname << endl;
+            cout << "Name:                " << first_name + " " + surname << endl;
             cout << "Employee ID:         "<< employee_id << endl; 
             cout << "Age:                 "<< age << endl;
             cout << "Gender               " << (gender == 'M' ? "Male" : "Female") << endl; // ternary operator that validates sex as Male if 'M' and Female if 'F'
