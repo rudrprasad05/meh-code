@@ -190,7 +190,7 @@ int main()
             }
 
             // calculates appropriate tax for all genders under age or equal to 80 years but over 55.
-            else if (age <= AGE_80) 
+            else if (age < AGE_80 && age >= 55) 
             {
                 if (annual_income < FIFTY_THOUSAND_DOLLARS)
                 {
@@ -211,7 +211,7 @@ int main()
             }
 
             // calculates appropriate tax for all genders over age of 80.
-            else if (age > AGE_80) 
+            else if (age >= AGE_80) 
             {
                 tax = 0;
             }
@@ -235,7 +235,6 @@ int main()
         else 
             cout << "Invalid Input...Retry" << endl;
         
-    
     }
 
     return 0;
